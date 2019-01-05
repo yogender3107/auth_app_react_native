@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import firebase from "firebase";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 import {
   Header,
   Button,
@@ -9,6 +11,8 @@ import {
   Card
 } from "./components/common";
 import LoginForm from "./components/LoginForm";
+import reducers from "./reducers";
+import LibraryList from "./components/LibraryList";
 
 class App extends Component {
   state = { loggedIn: null };
@@ -39,9 +43,8 @@ class App extends Component {
             <CardSection>
               <Button onPress={() => firebase.auth().signOut()}>Log Out</Button>
             </CardSection>
+            <LibraryList />
           </Card>
-
-          // <Button label="Log Out" onPress={() => firebase.auth().signOut()} />
         );
       case false:
         return <LoginForm />;
@@ -52,10 +55,12 @@ class App extends Component {
 
   render() {
     return (
-      <View>
-        <Header headerText="Authentication" />
-        {this.renderContent()}
-      </View>
+      <Provider store={createStore(reducers)}>
+        <View style={{ flex: 1 }}>
+          <Header headerText="Tech Stack" />
+          {this.renderContent()}
+        </View>
+      </Provider>
     );
   }
 }

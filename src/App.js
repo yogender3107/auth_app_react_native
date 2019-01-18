@@ -12,7 +12,7 @@ import {
 } from "./components/common";
 import LoginForm from "./components/LoginForm";
 import reducers from "./reducers";
-import LibraryList from "./components/LibraryList";
+import LibraryList from "./components/LibraryListItems";
 
 class App extends Component {
   state = { loggedIn: null };

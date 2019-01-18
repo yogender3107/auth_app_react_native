@@ -5,9 +5,7 @@ import {
   View,
   LayoutAnimation
 } from "react-native";
-import { connect } from "react-redux";
 import { CardSection } from "./common";
-import * as actions from "../actions";
 
 class ListItem extends Component {
   componentDidUpdate() {
@@ -23,6 +21,7 @@ class ListItem extends Component {
       );
     }
   }
+
   render() {
     const { titleStyle } = styles;
     const { id, title } = this.props.library;
@@ -47,13 +46,4 @@ const styles = {
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
-  console.log("stateitem" + JSON.stringify(state));
-  const expended = state.selectedLibraryId === ownProps.library.id;
-  return { expended };
-};
-
-export default connect(
-  mapStateToProps,
-  actions
-)(ListItem);
+export default ListItem;

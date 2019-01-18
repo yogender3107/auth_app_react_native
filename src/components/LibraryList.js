@@ -27,8 +27,6 @@ class LibraryList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("stateLibrary" + JSON.stringify(state));
-
   return {
     libraries: state.libraries
   };
